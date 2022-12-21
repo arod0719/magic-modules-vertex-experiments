@@ -997,3 +997,74 @@ objects:
           The update method to use with this Index. The value must be the followings. If not set, BATCH_UPDATE will be used by default.
           * BATCH_UPDATE: user can call indexes.patch with files on Cloud Storage of datapoints to update.
           * STREAM_UPDATE: user can call indexes.upsertDatapoints/DeleteDatapoints to update the Index and the updates will be applied in corresponding DeployedIndexes in nearly real-time.
+# Vertex AI TensorboardExperiment
+  - !ruby/object:Api::Resource
+    name: TensorboardExperiment
+    base_url: projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments
+    self_link: '{{name}}' 
+    update_verb: :PATCH
+    update_mask: true
+    references: !ruby/object:Api::Resource::ReferenceLinks
+      guides:
+        'Official Documentation':
+          'https://cloud.google.com/vertex-ai/docs'
+      api: 'https://cloud.google.com/vertex-ai/docs/reference/rest/v1/projects.locations.tensorboards.experiments'
+    async: !ruby/object:Api::OpAsync
+      operation: !ruby/object:Api::OpAsync::Operation
+        path: 'name'
+        base_url: '{{op_id}}'
+        wait_ms: 1000
+      result: !ruby/object:Api::OpAsync::Result
+        path: 'response'
+        resource_inside_response: true
+      status: !ruby/object:Api::OpAsync::Status
+        path: 'done'
+        complete: True
+        allowed:
+          - True
+          - False
+      error: !ruby/object:Api::OpAsync::Error
+        path: 'error'
+        message: 'message'
+    description: |-
+      A TensorboardExperiment is a group of TensorboardRuns, that are typically the results of a training job run, in a Tensorboard.
+    parameters:
+      - !ruby/object:Api::Type::String
+        name: tensorboard
+        description: The resource name of the Tensorboard to create the TensorboardExperiment in the format projects/{project}/locations/{location}/tensorboards/{tensorboard}
+        url_param_only: true
+        input: true
+        required: true
+    properties:
+      - !ruby/object:Api::Type::String
+        name: 'name'
+        description: Name of the TensorboardExperiment.
+        output: true
+      - !ruby/object:Api::Type::String
+        name: 'displayName'
+        description: User provided name of this TensorboardExperiment.
+      - !ruby/object:Api::Type::String
+        name: 'description'
+        description: Description of this TensorboardExperiment.
+      - !ruby/object:Api::Type::String
+        name: 'createTime'
+        output: true
+        description: |
+          The timestamp of when the TensorboardExperiment was created in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits.
+      - !ruby/object:Api::Type::String
+        name: 'updateTime'
+        output: true
+        description: |
+          The timestamp of when the TensorboardExperiment was last updated in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits.
+      - !ruby/object:Api::Type::KeyValuePairs
+        name: 'labels'
+        description: |
+          The labels with user-defined metadata to organize your TensorboardExperiments.
+      - !ruby/object:Api::Type::String
+        name: etag
+        description: Used to perform consistent read-modify-write updates. If not set, a blind "overwrite" update happens.
+        output: true
+      # - !ruby/object:Api::Type::String
+      #   name: source
+      #   description: Source of the TensorboardExperiment. For example, a custom training job.
+      #   output: true
