@@ -235,21 +235,19 @@ overrides: !ruby/object:Overrides::ResourceOverrides
         custom_flatten: templates/terraform/custom_flatten/name_from_self_link.erb
       region: !ruby/object:Overrides::Terraform::PropertyOverride
         default_from_api: true
-  # TensorboardExperiment: !ruby/object:Overrides::Terraform::ResourceOverride
-  #   autogen_async: false
-  #   id_format: '{{name}}'
-  #   skip_sweeper: true
-  #   examples:
-  #     - !ruby/object:Provider::Terraform::Examples
-  #       name: "vertex_ai_experiment"
-  #       primary_resource_id: "experiment"
-  #       vars:
-  #         name: "test-experiment"
-  #   properties:
-  #     name: !ruby/object:Overrides::Terraform::PropertyOverride
-  #       custom_flatten: templates/terraform/custom_import/vertex_ai_experiment.go.erb
-  #     region: !ruby/object:Overrides::Terraform::PropertyOverride
-  #       default_from_api: true
+  TensorboardExperiment: !ruby/object:Overrides::Terraform::ResourceOverride
+    autogen_async: false
+    id_format: '{{name}}'
+    skip_sweeper: true
+    examples:
+      - !ruby/object:Provider::Terraform::Examples
+        name: "vertex_ai_experiment"
+        primary_resource_id: "experiment"
+        vars:
+          name: "test-experiment"
+    properties:
+      region: !ruby/object:Overrides::Terraform::PropertyOverride
+        default_from_api: true
 
 # This is for copying files over
 files: !ruby/object:Provider::Config::Files
