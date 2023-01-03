@@ -1,4 +1,15 @@
+resource "google_vertex_ai_tensorboard" "tensorboard" {
+  display_name = "<%= ctx[:vars]['name'] %>"
+  description  = "sample description"
+  labels       = {
+    "key1" : "value1",
+    "key2" : "value2"
+  }
+  region       = "us-central1"
+}
+
 resource "google_vertex_ai_experiment" "<%= ctx[:primary_resource_id] %>"{
   name = "<%= ctx[:vars]['name'] %>"
-  description = "Vertex ai experiment test
+  description = "Vertex ai experiment test"
+  tensorboard = google_vertex_ai_tensorboard.tensorboard.id
 }

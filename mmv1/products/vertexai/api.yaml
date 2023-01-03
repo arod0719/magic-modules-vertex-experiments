@@ -1063,6 +1063,7 @@ objects:
       - !ruby/object:Api::Type::String
         name: etag
         description: Used to perform consistent read-modify-write updates. If not set, a blind "overwrite" update happens.
+        output: true #verify this
       - !ruby/object:Api::Type::String
         name: source
         description: Source of the TensorboardExperiment. For example, a custom training job.
