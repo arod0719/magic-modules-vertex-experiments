@@ -9,7 +9,7 @@ resource "google_vertex_ai_tensorboard" "tensorboard" {
 }
 
 resource "google_vertex_ai_experiment" "<%= ctx[:primary_resource_id] %>"{
-  name = "<%= ctx[:vars]['name'] %>"
+  displayName = "<%= ctx[:vars]['name'] %>"
   description = "Vertex ai experiment test"
   tensorboard = google_vertex_ai_tensorboard.tensorboard.id
 }

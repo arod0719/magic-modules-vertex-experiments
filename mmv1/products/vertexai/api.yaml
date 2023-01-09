@@ -1026,6 +1026,7 @@ objects:
       error: !ruby/object:Api::OpAsync::Error
         path: 'error'
         message: 'message'
+      include_project: true #verify this is needed
     description: |-
       A TensorboardExperiment is a group of TensorboardRuns, that are typically the results of a training job run, in a Tensorboard.
     parameters:
@@ -1063,7 +1064,6 @@ objects:
       - !ruby/object:Api::Type::String
         name: etag
         description: Used to perform consistent read-modify-write updates. If not set, a blind "overwrite" update happens.
-        output: true #verify this
       - !ruby/object:Api::Type::String
         name: source
         description: Source of the TensorboardExperiment. For example, a custom training job.
